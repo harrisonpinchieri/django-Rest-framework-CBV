@@ -7,6 +7,8 @@ from .serializer import (
     ListaMatriculasAlunoSerializer,
     ListaAlunosMatriculadosSerializer,
 )
+from rest_framework.authentication import BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 
 class AlunosViewSet(viewsets.ModelViewSet):
@@ -14,6 +16,8 @@ class AlunosViewSet(viewsets.ModelViewSet):
 
     queryset = Aluno.objects.all()
     serializer_class = AlunoSerializer
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
 
 
 class CursosViewSet(viewsets.ModelViewSet):
@@ -21,6 +25,8 @@ class CursosViewSet(viewsets.ModelViewSet):
 
     queryset = Curso.objects.all()
     serializer_class = CursoSerializer
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
 
 
 class MatriculasViewSet(viewsets.ModelViewSet):
@@ -28,6 +34,8 @@ class MatriculasViewSet(viewsets.ModelViewSet):
 
     queryset = Matricula.objects.all()
     serializer_class = MatriculaSerializer
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
 
 
 class ListaMatriculasAluno(generics.ListAPIView):
@@ -38,6 +46,8 @@ class ListaMatriculasAluno(generics.ListAPIView):
         return queryset
 
     serializer_class = ListaMatriculasAlunoSerializer
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
 
 
 class ListaAlunosMatriculados(generics.ListAPIView):
@@ -48,3 +58,5 @@ class ListaAlunosMatriculados(generics.ListAPIView):
         return queryset
 
     serializer_class = ListaAlunosMatriculadosSerializer
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
