@@ -5,6 +5,7 @@ from .serializer import (
     CursoSerializer,
     MatriculaSerializer,
     ListaMatriculasAlunoSerializer,
+    ListaAlunosMatriculadosSerializer,
 )
 
 
@@ -37,3 +38,13 @@ class ListaMatriculasAluno(generics.ListAPIView):
         return queryset
 
     serializer_class = ListaMatriculasAlunoSerializer
+
+
+class ListaAlunosMatriculados(generics.ListAPIView):
+    """listando alunos matriculados em um curso"""
+
+    def get_queryset(self):
+        queryset = Matricula.objects.filter(curso_id=self.kwargs["pk"])
+        return queryset
+
+    serializer_class = ListaAlunosMatriculadosSerializer

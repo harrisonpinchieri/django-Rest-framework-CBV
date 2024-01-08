@@ -6,6 +6,7 @@ from api.views import (
     CursosViewSet,
     MatriculasViewSet,
     ListaMatriculasAluno,
+    ListaAlunosMatriculados,
 )
 
 router = routers.DefaultRouter()
@@ -17,4 +18,5 @@ router.register("matriculas", MatriculasViewSet, basename="Matriculas")
 urlpatterns = [
     path("", include(router.urls)),
     path("aluno/<str:pk>/matriculas", ListaMatriculasAluno.as_view()),
+    path("curso/<str:pk>/matriculas", ListaAlunosMatriculados.as_view()),
 ]
